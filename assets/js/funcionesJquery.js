@@ -1,6 +1,15 @@
 //************************************************************************************/
 //************************************************************************************/
 //     FUNCIONES DEL MANTENIMIENTO DE JUGADORES
+function mensajes($titulo,$texto,$tipo){
+	swal({
+		title: $titulo,
+		text: $texto,
+		icon: $tipo,
+		button: "Aceptar",
+	});
+};
+
 function AgregarJugador(){
 	var nombre = document.getElementById("nombre").value
 	var apellido = document.getElementById("apellido").value
@@ -446,6 +455,12 @@ function LimCamUsu(){
 	$('#identificacion').removeClass("is-invalid");
 	$('#nombre').removeClass("is-invalid");
 	$('#apellido').removeClass("is-invalid");
+}
+
+function LimCamApu(){
+	$('input[name=porcentajeApuesta]').attr('checked',false);
+	document.getElementById("idnumapos").value ="";
+	$("#id_jugador").val('').trigger('change');	
 }
 
 function VistaPrincipal(){

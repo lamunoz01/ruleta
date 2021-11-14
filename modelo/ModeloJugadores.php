@@ -7,11 +7,11 @@
 			//$this->db_name = '';
 		}
   
-		public function consulta($ID='') {	
+		public function consulta($ID) {	
 			if($ID != ''):
 				$this->query = "
 				SELECT ID, NOMBRE, APELLIDO, IDENTIFICACION, SALDO
-				FROM JUGADORES
+				FROM jugadores
 				WHERE NOMBRE like '%$ID%';";
 				$this->obtener_resultados_query();
 				return $this->rows;
@@ -22,7 +22,7 @@
 			if($ID != ''):
 				$this->query = "
 				SELECT ID, NOMBRE, APELLIDO, IDENTIFICACION, SALDO
-				FROM JUGADORES
+				FROM jugadores
 				WHERE ID = $ID
 				";
 				$this->obtener_resultados_query();
@@ -32,7 +32,7 @@
 				
 		
 		public function lista() {
-			$this->query = "SELECT ID, NOMBRE, APELLIDO, IDENTIFICACION, SALDO FROM JUGADORES;";
+			$this->query = "SELECT ID, NOMBRE, APELLIDO, IDENTIFICACION, SALDO FROM jugadores;";
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}
@@ -40,7 +40,7 @@
 				
 		public function nuevo($datos=array()) {		
 			$this->query = "
-			INSERT INTO JUGADORES
+			INSERT INTO jugadores
 			(NOMBRE,APELLIDO,IDENTIFICACION, SALDO)
 			VALUES
 			('".$datos['NOMBRE']."', '".$datos['APELLIDO']."', '".$datos['IDENTIFICACION']."', '".$datos['SALDO']."')";
@@ -49,16 +49,22 @@
 		
 		
 		public function editar($datos=array()) {			
-			$this->query = "UPDATE JUGADORES
+			$this->query = "UPDATE jugadores
 			SET NOMBRE='".$datos['NOMBRE']."', APELLIDO='".$datos['APELLIDO']."', IDENTIFICACION='".$datos['IDENTIFICACION'].
 			"', SALDO='".$datos['SALDO']."' WHERE ID = ".$datos['JUGAID'];
 			$this->ejecutar_query_simple();
 		}
 
-		
-		public function borrar($ID='') {
-			$this->query = "DELETE FROM JUGADORES WHERE ID = $ID";
-			$this->ejecutar_query_simple();
+		public function listaJugadores($datos) {
+			if($datos != null){
+				$this->query = "SELECT id, CONCAT(NOMBRE,' ',APELLIDO) AS text FROM jugadores WHERE SALDO > 0 AND 
+				CONCAT(NOMBRE,' ',APELLIDO) like '%".$datos."%';";
+			}else{
+				$this->query = "SELECT id, CONCAT(NOMBRE,' ',APELLIDO) AS text FROM jugadores WHERE SALDO > 0;";				
+			}
+
+			$this->obtener_resultados_query();
+			return $this->rows;
 		}
 	}
 ?>

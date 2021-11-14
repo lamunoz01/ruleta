@@ -9,3 +9,4 @@
 <link rel="stylesheet" type="text/css" href="assets/css/material-icons.css" />
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" />
 <link rel="stylesheet" type="text/css" href="assets/css/estilos.css" />
+<link rel="stylesheet" type="text/css" href="assets/css/select2.min.css">  
