@@ -247,7 +247,6 @@
 
 				mensajes('Exito','El número ganador es: '+numini,'success');
 
-				numini = 0;
 				var accion = "girarRuleta";
 				var destino = "RULETA";
 				var datos = {

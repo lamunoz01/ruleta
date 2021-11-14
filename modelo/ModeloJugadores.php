@@ -66,5 +66,10 @@
 			$this->obtener_resultados_query();
 			return $this->rows;
 		}
+
+		public function borrar($ID='') {
+			$this->query = "DELETE FROM jugadores WHERE id = $ID";
+			$this->ejecutar_query_simple();
+		}		
 	}
 ?>
